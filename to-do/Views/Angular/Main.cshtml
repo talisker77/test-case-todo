@@ -1,0 +1,11 @@
+﻿@{
+  Layout = "_angular";
+}
+
+<div ng-controller="Main as vm">
+  <span>This is angular, {{vm.welcome}}</span>
+</div>
+
+@section angularScript{
+  <script src="~/app/main.js"></script>
+}
