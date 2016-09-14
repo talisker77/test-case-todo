@@ -1,0 +1,28 @@
+﻿@{
+  Layout = "_angular";
+}
+
+
+
+<div ng-controller="ToDo as d">
+  <div>
+    <select ng-model="d.user" ng-options="i.userName for i in d.users" />
+    <input ng-model="d.title"  placeholder="to do title"/>
+    <input ng-model="d.description" placeholder="description of to do"/>
+    <select ng-model="d.todoType" ng-options="i.description for i in d.todoTypes"></select>
+
+    <button ng-click="d.addToDo()">Add to do</button>
+  </div>
+
+  <p>To do items counting {{d.todoItems.length}}</p>
+  <ul>
+    <li ng-repeat="item in d.todoItems track by $index">
+     To do: {{item.title}} doing:  {{item.description}} type {{item.toDoType.description}}
+    </li>
+  </ul>
+  <p>Data: {{d.message}}</p>
+</div>
+
+@section angularScript{
+  <script src="~/app/todo.js"></script>
+}

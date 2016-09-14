@@ -1,0 +1,19 @@
+﻿@{
+  Layout = "_angular";
+}
+
+<div ng-controller="toDoTypesController as t">
+  <input type="text" ng-model="t.description" placeholder="to do type" />
+  <button ng-click="t.addType()">Add</button>
+
+  <p>Server status: {{t.result}}</p>
+
+  <ul>
+    <li ng-repeat="item in t.toDoTypes track by $index">
+     Type: {{item.description}} 
+    </li>
+  </ul>
+</div>
+@section angularScript{
+  <script src="~/app/toDoTypesController.js"></script>
+}

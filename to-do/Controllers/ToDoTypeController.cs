@@ -8,47 +8,43 @@ using to_do.Model;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace to_do
+namespace to_do.Controllers
 {
+
+
   [Route("api/[controller]")]
-  public class UserController : Controller
+  public class ToDoTypeController : Controller
   {
-
     private readonly StoreContext _store;
-
-    public UserController(StoreContext store)
+    public ToDoTypeController(StoreContext store)
     {
       _store = store;
     }
     // GET: api/values
     [HttpGet]
-    public IEnumerable<User> Get()
+    public IEnumerable<ToDoType> Get()
     {
-      return _store.Users.AsEnumerable();
+      return _store.ToDoTypes.AsEnumerable();
     }
 
     // GET api/values/5
     [HttpGet("{id}")]
-    public User Get(string id)
+    public ToDoType Get(string id)
     {
-      var user = _store
-        .Users
-        .FirstOrDefault(u => u.UserName == id);
-      return user;
+      var guid = Guid.Parse(id);
+      return _store.ToDoTypes.FirstOrDefault(t => t.Id == guid);
     }
 
-    // POST api/user
+    // POST api/values
     [HttpPost]
-    public void Post([FromBody]User value)
+    public void Post([FromBody]ToDoType value)
     {
-      if (!_store.Users.Any(u => u.UserName == value.UserName))
+      if (!_store.ToDoTypes.Any(t => t.Description == value.Description))
       {
         value.Id = Guid.NewGuid();
-        value.ToDoItems = new List<ToDo>();
-        _store.Users.Add(value);
+        _store.ToDoTypes.Add(value);
         _store.SaveChanges();
       }
-     
     }
 
     // PUT api/values/5

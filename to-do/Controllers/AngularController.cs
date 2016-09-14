@@ -24,5 +24,20 @@ namespace to_do.Controllers
     {
       return View();
     }
+
+    public IActionResult ToDoList()
+    {
+      return View();
+    }
+
+    public IActionResult ToDoTypes()
+    {
+      return View();
+    }
+
+    public IActionResult Reports()
+    {
+      return View();
+    }
   }
 }
